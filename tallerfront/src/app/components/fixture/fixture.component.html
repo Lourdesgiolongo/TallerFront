@@ -1,0 +1,26 @@
+<body>
+    <div class="menu">
+        <nav class="nav-menu">
+            <button mat-button routerLink="/home">Inicio</button>
+            
+            <button mat-button routerLink="/competencias">Competencias</button>
+            
+            <button mat-button routerLink="/fixture">Fixture</button>
+
+            <button mat-button (click)="navigateToStandings()">Tabla de Posiciones</button>
+
+            <button mat-button (click)="logout()">Cerrar Sesión</button>
+        </nav>
+    </div>
+    
+    <div class="fixture-container">
+        <h2 class="fixture-header">Fixture</h2>
+        <div class="partido" *ngFor="let partido of partidos">
+            <h3>{{ partido.id_local }} vs {{ partido.id_visitante }}</h3>
+            <p>Competencia: {{ obtenerNombreCompetencia(partido.id_competencia) }}</p>
+            <p>Fecha: {{ partido.fecha_realizacion }}</p>
+        </div>
+    </div>
+    
+
+</body>

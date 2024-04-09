@@ -1,0 +1,37 @@
+<body>
+    <div class="menu">
+        <nav class="nav-menu">
+            <button mat-button routerLink="/home">Inicio</button>
+            
+            <button mat-button routerLink="/competencias">Competencias</button>
+            
+            <button mat-button routerLink="/fixture">Fixture</button>
+
+            <button mat-button routerLink="/clasificacion">Tabla de Posiciones</button>
+
+            <button mat-button (click)="logout()">Cerrar Sesión</button>
+        </nav>
+    </div>
+
+    <div class="content">
+        <h2>COMPETENCIAS</h2>
+        <!-- Botón para crear una nueva competencia -->
+        
+        <div class="competencias-container" *ngIf="competencias && competencias.length > 0">
+            <div class="competencia" *ngFor="let competencia of competencias">
+                <div class="competencia-info">
+                    <p><strong>ID:</strong> {{ competencia.id }}</p>
+                    <p><strong>Nombre:</strong> {{ competencia.nombre }}</p>
+                    <p><strong>Fecha de inicio:</strong> {{ competencia.fecha_inicio }}</p>
+                    <p><strong>Fecha de creación:</strong> {{ competencia.fecha_creacion }}</p>
+                    <!-- Agrega más información aquí si es necesario -->
+                </div>
+            </div>
+        </div>
+        <button class="create-button" (click)="crearCompetencia()">Crear Competencia</button>
+
+        <div *ngIf="competencias && competencias.length === 0">
+            <p>No se encontraron competencias.</p>
+        </div>
+    </div>
+</body>

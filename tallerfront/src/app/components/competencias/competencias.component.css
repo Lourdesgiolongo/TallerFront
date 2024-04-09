@@ -1,0 +1,89 @@
+
+.nav-menu{
+    background-color: #fff;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.nav-menu button {
+    color:#000;
+    /* background-color: #fbfb56; */
+    border: none;
+    font-size: 16px; 
+    margin-right: 10px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: #ff9c1b 0.3s ease; 
+}
+
+.nav-menu button:hover {
+    color: white;
+    background-color: #ff9c1b; /* Color de fondo cuando se pasa el ratón por encima */
+}
+
+.nav-menu button:active {
+    background-color: red; /* Color de fondo cuando se presiona el botón */
+}
+
+.content{
+    padding-top: 80px;
+}
+
+h2 {
+    color: #ff9c1b;
+    font-size: 40px;
+    text-align: center;
+    line-height: 1;
+}
+
+.competencias-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+.competencia {
+    width: calc(30% - 20px);
+    margin-bottom: 20px;
+    background-color: #52b69a;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.competencia-info {
+    color: #eaff9d;
+}
+
+.create-button{
+    display: block;
+    margin: 0 auto;
+    background-color: #ff9c1b;
+    border-style: none;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: red 0.3s ;
+}
+
+
+.create-button:active{
+    background-color: #52b69a;
+    transform: translateY(2px);
+}
+
+ /*-----------------SECCIÓN RESPONSIVE----------------------*/
+
+@media (max-width: 768px) {
+    .competencia {
+        width: calc(45% - 20px);
+    }
+}
