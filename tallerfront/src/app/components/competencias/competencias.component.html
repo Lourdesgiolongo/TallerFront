@@ -2,36 +2,45 @@
     <div class="menu">
         <nav class="nav-menu">
             <button mat-button routerLink="/home">Inicio</button>
-            
             <button mat-button routerLink="/competencias">Competencias</button>
-            
             <button mat-button routerLink="/fixture">Fixture</button>
-
             <button mat-button routerLink="/clasificacion">Tabla de Posiciones</button>
-
             <button mat-button (click)="logout()">Cerrar Sesión</button>
         </nav>
     </div>
 
     <div class="content">
         <h2>COMPETENCIAS</h2>
-        <!-- Botón para crear una nueva competencia -->
+        <button class="create-button" (click)="abrirFormulario()">Crear Competencia</button>
         
-        <div class="competencias-container" *ngIf="competencias && competencias.length > 0">
-            <div class="competencia" *ngFor="let competencia of competencias">
-                <div class="competencia-info">
-                    <p><strong>ID:</strong> {{ competencia.id }}</p>
-                    <p><strong>Nombre:</strong> {{ competencia.nombre }}</p>
-                    <p><strong>Fecha de inicio:</strong> {{ competencia.fecha_inicio }}</p>
-                    <p><strong>Fecha de creación:</strong> {{ competencia.fecha_creacion }}</p>
-                    <!-- Agrega más información aquí si es necesario -->
-                </div>
+        <div *ngIf="mostrarFormulario">
+            <h3>Nueva Competencia</h3>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" [(ngModel)]="nuevaCompetencia.nombre">
+            <br>
+            <label for="fechaInicio">Fecha de Inicio:</label>
+            <input type="date" id="fechaInicio" [(ngModel)]="nuevaCompetencia.fecha_inicio">
+            <br>
+            <button (click)="crearCompetencia()">Guardar</button>
+        </div>
+        
+        <div *ngIf="competencias && competencias.length > 0">
+            <h3>Competencias existentes:</h3>
+            <div *ngFor="let competencia of competencias">
+                <p>ID: {{ competencia.id }}</p>
+                <p>Nombre: {{ competencia.nombre }}</p>
+                <p>Fecha de inicio: {{ competencia.fecha_inicio }}</p>
+                <p>Fecha de creación: {{ competencia.fecha_creacion }}</p>
+                <button (click)="eliminarCompetencia(competencia.id)">Eliminar</button>
+                
             </div>
         </div>
-        <button class="create-button" (click)="crearCompetencia()">Crear Competencia</button>
-
+        
         <div *ngIf="competencias && competencias.length === 0">
             <p>No se encontraron competencias.</p>
         </div>
     </div>
+    
+        
+    
 </body>

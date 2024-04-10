@@ -5,14 +5,14 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select'; // Importa MatSelectModule
-import { MatOptionModule } from '@angular/material/core'; // Importa MatOptionModule
+import { MatSelectModule } from '@angular/material/select'; 
+import { MatOptionModule } from '@angular/material/core'; 
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 import { RouterModule } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
@@ -33,8 +33,8 @@ import { ClasificacionComponent } from './components/clasificacion/clasificacion
     BrowserModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatSelectModule, // Agrega MatSelectModule aquí
-    MatOptionModule, // Agrega MatOptionModule aquí
+    MatSelectModule, 
+    MatOptionModule, 
     RouterModule,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -42,7 +42,8 @@ import { ClasificacionComponent } from './components/clasificacion/clasificacion
     MatMenuModule,
     MatIconModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule, 
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

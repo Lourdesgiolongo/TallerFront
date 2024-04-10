@@ -9,10 +9,32 @@ import { tap, catchError } from 'rxjs';
   providedIn: 'root'  
 })
 export class CompetenciasService {
+  // guardarCompetencia(nuevaCompetencia: Competencia): Observable<Competencia> {
+  //   const token = this.authService.getToken();
+  
+  //   const headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Authorization': `Bearer ${token}`
+  //   });
+  
+  //   return this.http.post<Competencia>(this.baseUrl, nuevaCompetencia, { headers }).pipe(
+  //     tap((competencia: Competencia) => console.log('Competencia guardada:', competencia)),
+  //     catchError((error: any) => {
+  //       console.log('Error al guardar la competencia:', error);
+  //       throw error;
+  //     })
+  //   );
+  // }
+  
+  
 
   private baseUrl = 'http://localhost:8080/api/v1/competencias';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
+
+  guardarCompetencia(competencia: Competencia): Observable<Competencia> {
+    return this.http.post<Competencia>(this.baseUrl, competencia);
+  }
 
   obtenerCompetencias(): Observable<Competencia[]> {
     const token = this.authService.getToken();

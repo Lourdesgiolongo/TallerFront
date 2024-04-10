@@ -6,15 +6,9 @@ import { Competencia } from '../components/competencias/competencias.model';
 @Injectable({
   providedIn: 'root'
 })
-export class CompetenciaService {
-  eliminarCompetencia(competenciaId: string) {
-    throw new Error('Method not implemented.');
-  }
-  crearCompetencia(nuevaCompetencia: Competencia) {
-    throw new Error('Method not implemented.');
-  }
-
-  private baseUrl = 'http://localhost:8080/api/v1/competencias';
+export class CompetenciasService {
+  
+  private baseUrl = 'http://localhost:8080/api/v1';
 
   constructor(private http: HttpClient) { }
 
@@ -26,7 +20,18 @@ export class CompetenciaService {
    
   // Método para guardar una nueva competencia en el backend
   guardarCompetencia(competencia: Competencia): Observable<Competencia> {
-    const url = `${this.baseUrl}/competencia/save`;
+    const url = `${this.baseUrl}/competencias`; // Ruta corregida
     return this.http.post<Competencia>(url, competencia);
+  }
+  
+
+  eliminarCompetencia(competenciaId: number): Observable<void> {
+    const url = `${this.baseUrl}/competencias/${competenciaId}`;
+    return this.http.delete<void>(url);
+  }
+  
+  modificarCompetencia(competencia: Competencia): Observable<Competencia> {
+    const url = `${this.baseUrl}/competencias/${competencia.id}`;
+    return this.http.put<Competencia>(url, competencia);
   }
 }
