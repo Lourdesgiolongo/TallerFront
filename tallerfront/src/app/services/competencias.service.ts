@@ -20,7 +20,7 @@ export class CompetenciasService {
    
   // Método para guardar una nueva competencia en el backend
   guardarCompetencia(competencia: Competencia): Observable<Competencia> {
-    const url = `${this.baseUrl}/competencias`; // Ruta corregida
+    const url = `${this.baseUrl}/competencias/save`; // Ruta corregida
     return this.http.post<Competencia>(url, competencia);
   }
   

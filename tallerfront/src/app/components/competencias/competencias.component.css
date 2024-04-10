@@ -1,3 +1,10 @@
+body{
+    background-image: url('../../../assets/Imagenes-Iconos/grass-2616911_1280.jpg');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-position-y: -10px;
+    background-attachment: fixed;}
 
 .nav-menu{
     background-color: #fff;
@@ -33,12 +40,19 @@
     background-color: red; /* Color de fondo cuando se presiona el botón */
 }
 
-.content{
-    padding-top: 80px;
+.content{  
+    background-image: url('../../../assets/Imagenes-Iconos/grass-2616911_1280.jpg');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-position-y: -10px;
+    background-attachment: fixed;
+    padding-top: 80px; 
+    min-height: 100vh; 
 }
 
 h2 {
-    color: #ff9c1b;
+    color: #000;
     font-size: 40px;
     text-align: center;
     line-height: 1;

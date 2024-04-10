@@ -3,7 +3,7 @@ import { FixtureService } from 'src/app/services/fixture.service';
 import { Partido } from '../partidos/partidos.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Competencia } from '../competencias/competencias.model';
-
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-fixture',
@@ -18,8 +18,7 @@ export class FixtureComponent implements OnInit {
   constructor(private fixtureService: FixtureService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.obtenerPartidos();
-    this.obtenerCompetencias();
+    this.obtenerPartidosYCompetencias();
   }
 
   logout() {
@@ -30,15 +29,12 @@ export class FixtureComponent implements OnInit {
     console.log('Navegar a la tabla de posiciones');
   }
 
-  obtenerPartidos(): void {
-    this.fixtureService.obtenerPartidos().subscribe(partidos => {
+  obtenerPartidosYCompetencias(): void {
+    forkJoin([
+      this.fixtureService.obtenerPartidos(),
+      this.fixtureService.obtenerCompetencias()
+    ]).subscribe(([partidos, competencias]) => {
       this.partidos = partidos;
-      
-    });
-  }
-
-  obtenerCompetencias(): void {
-    this.fixtureService.obtenerCompetencias().subscribe(competencias => {
       this.competencias = competencias;
       console.log(this.competencias); 
     });

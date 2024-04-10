@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CompetenciasComponent } from './competencias.component';
-import { CompetenciaService } from 'src/app/services/competencias.service';
+import { CompetenciasService } from 'src/app/services/competencias.service';
 
 describe('CompetenciasComponent', () => {
   let component: CompetenciasComponent;
@@ -9,7 +9,7 @@ describe('CompetenciasComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [CompetenciasComponent],
-      providers: [CompetenciaService]
+      providers: [CompetenciasService]
     });
     fixture = TestBed.createComponent(CompetenciasComponent);
     component = fixture.componentInstance;

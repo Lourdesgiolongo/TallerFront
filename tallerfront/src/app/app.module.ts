@@ -16,13 +16,16 @@ import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { JwtInterceptor } from 'src/interceptors/jwt.interceptor';
 import { HomeComponent } from './components/home/home.component';
 import { CompetenciasComponent } from './components/competencias/competencias.component';
 import { FixtureComponent } from './components/fixture/fixture.component';
 import { PartidosComponent } from './components/partidos/partidos.component';
 import { ClasificacionComponent } from './components/clasificacion/clasificacion.component';
+import { MatCardModule } from '@angular/material/card';
+
+
 
 
 @NgModule({
@@ -35,6 +38,7 @@ import { ClasificacionComponent } from './components/clasificacion/clasificacion
     MatInputModule,
     MatSelectModule, 
     MatOptionModule, 
+    MatCardModule,
     RouterModule,
     ReactiveFormsModule,
     AppRoutingModule,
