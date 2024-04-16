@@ -1,8 +1,10 @@
-  import { Component, OnInit } from '@angular/core';
-  import { Observable } from 'rxjs';
-  import { CompetenciasService } from 'src/app/competencias.service';
-  import { Competencia } from '../competencias/competencias.model';
-  import { AuthService } from 'src/app/services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CompetenciasService } from 'src/app/services/competencias.service';
+import { Competencia } from '../competencias/competencias.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router'; 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
   @Component({
     selector: 'app-competencias',
@@ -10,44 +12,34 @@
     styleUrls: ['./competencias.component.css']
   })
   export class CompetenciasComponent implements OnInit {
-    competencias$!: Observable<Competencia[]>; 
     competencias: Competencia[] = [];
-    nuevaCompetencia: Competencia = {
-      id: 0, 
-      nombre: '',
-      fecha_inicio: '',
-      fecha_creacion: '',
-    };
-    mostrarFormulario = false;
+    formularioEditar: FormGroup;
+  competenciaSeleccionada: Competencia | null = null;
+  mostrarFormularioEditar = false;
 
-    constructor(private competenciaService: CompetenciasService, private authService: AuthService) {
-      
+    constructor(private formBuilder: FormBuilder,private competenciaService: CompetenciasService, private authService: AuthService, private router: Router) {
+      this.formularioEditar = this.formBuilder.group({
+      nombre: ['', Validators.required],
+      fechaInicio: ['', Validators.required]
+    });
     }
 
     ngOnInit(): void {
       this.obtenerCompetencias(); 
     }
 
-    abrirFormulario(): void {
-      this.mostrarFormulario = true;
-    }
+    
 
-    crearCompetencia(): void {
-      this.nuevaCompetencia.fecha_creacion = new Date().toISOString();
-      this.competenciaService.guardarCompetencia(this.nuevaCompetencia).subscribe(() => {
-        this.mostrarFormulario = false;
-        // Después de guardar la competencia, obtenemos nuevamente la lista de competencias
-        this.obtenerCompetencias();
-        alert('Nueva Competencia creada');
-      });
-    }
-    
-    
+
     obtenerCompetencias(): void {
-      this.competencias$ = this.competenciaService.obtenerCompetencias();
-      this.competencias$.subscribe(competencias => {
-        this.competencias = competencias;
-      });
+      this.competenciaService.obtenerCompetencias().subscribe(
+        (competencias: Competencia[]) => {
+          this.competencias = competencias;
+        },
+        (error: any) => {
+          console.log('Error al obtener las competencias: ', error);
+        }
+      );
     }
 
     logout() {
@@ -55,41 +47,66 @@
     }
 
     navigateToStandings() {
+      // Implementa aquí la lógica para navegar a la tabla de posiciones
       console.log('Navegar a la tabla de posiciones');
     }
 
     navigateToFixture() {
+      // Implementa aquí la lógica para navegar al fixture
       console.log('Navegar al fixture');
     }
 
-    eliminarCompetencia(competenciaId: number) {
-      this.competenciaService.eliminarCompetencia(competenciaId.toString()).subscribe(() => {
-        this.obtenerCompetencias();
-      });
+    eliminarCompetencia(id: number): void {
+      this.competenciaService.eliminarCompetencia(id).subscribe(
+          () => {
+              console.log('Competencia eliminada exitosamente');
+              // Actualizar la lista de competencias después de eliminar
+              this.obtenerCompetencias();
+          },
+          (error: any) => {
+              console.error('Error al eliminar competencia:', error);
+          }
+      );
     }
 
-    modificarCompetencia(competenciaId: number) {
-      const competenciaAModificar = this.competencias.find(c => c.id === competenciaId);
-      if (competenciaAModificar) {
-        this.competenciaService.modificarCompetencia(competenciaAModificar).subscribe(
-          (competenciaModificada: Competencia) => {
-            console.log('Competencia modificada:', competenciaModificada);
+    editarCompetencia(competencia: Competencia): void {
+      this.competenciaSeleccionada = competencia;
+      this.formularioEditar.patchValue({
+        nombre: competencia.nombre,
+        fechaInicio: competencia.fecha_inicio
+      });
+      this.mostrarFormularioEditar = true;
+    }
+  
+    guardarCambios(): void {
+      if (this.formularioEditar.valid && this.competenciaSeleccionada) {
+        const nombre = this.formularioEditar.value.nombre;
+        const fechaInicio = this.formularioEditar.value.fechaInicio;
+  
+        // Actualiza los datos de la competencia seleccionada
+        this.competenciaSeleccionada.nombre = nombre;
+        this.competenciaSeleccionada.fecha_inicio = fechaInicio;
+  
+        // Llama al servicio para actualizar la competencia
+        this.competenciaService.actualizarCompetencia(this.competenciaSeleccionada).subscribe(
+          (competencia: Competencia) => {
+            console.log('Competencia modificada:', competencia);
+            // Actualiza la lista de competencias después de la modificación
+            this.obtenerCompetencias();
+            this.mostrarFormularioEditar = false; // Oculta el formulario de edición
           },
           (error: any) => {
             console.error('Error al modificar la competencia:', error);
           }
         );
       } else {
-        console.error('No se encontró la competencia con el ID especificado:', competenciaId);
+        console.error('Formulario inválido');
       }
     }
-
-    obtenerUltimoId(): number {
-      if (this.competencias.length === 0) {
-        return 0; 
-      } else {
-        return Math.max(...this.competencias.map(c => c.id)); 
-      }
+  
+    cancelarEdicion(): void {
+      this.mostrarFormularioEditar = false;
     }
-    
   }
+  
+  

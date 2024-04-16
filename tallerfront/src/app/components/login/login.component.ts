@@ -56,7 +56,6 @@ export class LoginComponent implements OnInit{
         });
     }
 
-
     logout() {
       this.authService.logout();
     }
@@ -76,4 +75,9 @@ export class LoginComponent implements OnInit{
         verticalPosition:'bottom'
       })
      }
+
+     onSuccessfulLogin(userId: number) {
+      this.authService.login(userId); // Llama al método login del servicio AuthService con el ID de usuario
+      // Otras acciones después del inicio de sesión, como redireccionar al usuario a otra página
+    }
 }

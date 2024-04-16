@@ -1,15 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CompetenciasComponent } from './competencias.component';
-import { CompetenciasService } from 'src/app/services/competencias.service';
 
-describe('CompetenciasComponent', () => {
+describe('CompetenciaComponent', () => {
   let component: CompetenciasComponent;
   let fixture: ComponentFixture<CompetenciasComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CompetenciasComponent],
-      providers: [CompetenciasService]
+      declarations: [CompetenciasComponent]
     });
     fixture = TestBed.createComponent(CompetenciasComponent);
     component = fixture.componentInstance;
@@ -19,4 +17,5 @@ describe('CompetenciasComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-}); 
+});
+

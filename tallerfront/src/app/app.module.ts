@@ -20,17 +20,23 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { JwtInterceptor } from 'src/interceptors/jwt.interceptor';
 import { HomeComponent } from './components/home/home.component';
 import { CompetenciasComponent } from './components/competencias/competencias.component';
-import { FixtureComponent } from './components/fixture/fixture.component';
 import { PartidosComponent } from './components/partidos/partidos.component';
 import { ClasificacionComponent } from './components/clasificacion/clasificacion.component';
 import { MatCardModule } from '@angular/material/card';
+import { RegistroComponent } from './components/registro/registro.component';
+import { ParticipantesComponent } from './components/participantes/participantes.component';
+import { ModCompetenciasComponent } from './components/modcompetencias/modcompetencias.component';
+import { FixtureComponent } from './components/fixture/fixture.component';
+import { CommonModule } from '@angular/common';
+import { ResultadoComponent } from './components/resultado/resultado.component';
+
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent, LoginComponent,  HomeComponent, CompetenciasComponent, FixtureComponent, PartidosComponent, ClasificacionComponent
+    AppComponent, LoginComponent,  HomeComponent, CompetenciasComponent, PartidosComponent, ClasificacionComponent, RegistroComponent, ParticipantesComponent, ModCompetenciasComponent, FixtureComponent, ResultadoComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +53,8 @@ import { MatCardModule } from '@angular/material/card';
     MatIconModule,
     HttpClientModule,
     MatSnackBarModule, 
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

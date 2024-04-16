@@ -17,17 +17,21 @@
         </nav>
     </div>
 
-    <div class="container">
-        <mat-card class="example-card">
-            <mat-card-header>
-                <mat-card-title-group>
-                    <mat-card-title>¡Bienvenido a mi página web sobre gestiones de competencias deportivas!</mat-card-title>
-                    <mat-card-subtitle></mat-card-subtitle>
-                </mat-card-title-group>
-            </mat-card-header>
-            <mat-card-content>
-                
-            </mat-card-content>
-        </mat-card>
-    </div>
+    <h2>Listado de Participantes</h2>
+
+<div *ngIf="participantes && participantes.length > 0">
+  <ul>
+    <li *ngFor="let participante of participantes">
+      <h3>{{ participante.nombre }}</h3>
+      <p>Colores: {{ participante.colores }}</p>
+      <p>Trofeos: {{ participante.trofeos }}</p>
+      <p>Fecha de Baja: {{ participante.fecha_baja | date }}</p>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="!participantes || participantes.length === 0">
+  <p>No hay participantes disponibles.</p>
+</div>
+
 </body>

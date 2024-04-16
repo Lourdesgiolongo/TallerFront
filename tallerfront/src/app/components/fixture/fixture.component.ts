@@ -4,6 +4,14 @@ import { Partido } from '../partidos/partidos.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Competencia } from '../competencias/competencias.model';
 import { forkJoin } from 'rxjs';
+import { Participante } from '../participantes/participantes.model';
+import { Enfrentamiento } from '../fixture/fixture.model';
+
+interface Fixture {
+  competencia: string;
+  fechaPartido: string;
+  enfrentamientos: Enfrentamiento[];
+}
 
 @Component({
   selector: 'app-fixture',
@@ -11,51 +19,64 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./fixture.component.css']
 })
 export class FixtureComponent implements OnInit {
-  partidos: Partido[] = [];
-  fixture: any = {};
   competencias: Competencia[] = [];
+  participantes: Participante[] = [];
+  partidos: Partido[] = [];
+  fixture: Fixture[] = [];
 
-  constructor(private fixtureService: FixtureService, private authService: AuthService) { }
+  constructor(
+    private fixtureService: FixtureService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.obtenerPartidosYCompetencias();
+    forkJoin({
+      competencias: this.fixtureService.getCompetencias(),
+      participantes: this.fixtureService.getParticipantes(),
+      partidos: this.fixtureService.getPartidos()
+    }).subscribe(({ competencias, participantes, partidos }) => {
+      this.competencias = competencias;
+      this.participantes = participantes;
+      this.partidos = partidos;
+      this.construirFixture();
+    });
+  }
+
+  construirFixture(): void {
+    this.competencias.forEach(competencia => {
+      const partidosCompetencia = this.partidos.filter(partido => partido.competencia?.id === competencia.id);
+
+      if (partidosCompetencia.length > 0) {
+        const enfrentamientos: Enfrentamiento[] = [];
+        partidosCompetencia.forEach(partido => {
+          const participanteLocal = partido.local;
+          const participanteVisitante = partido.visitante;
+
+          if (participanteLocal && participanteVisitante) {
+            enfrentamientos.push({
+              participante: participanteLocal.nombre,
+              oponente: participanteVisitante.nombre,
+              competencia: competencia.nombre,
+              fechaPartido: new Date(partido.fecha_realizacion).toLocaleString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+              enfrentamientos: []
+            });
+          } else {
+            console.log('Participantes inválidos para el partido:', partido);
+          }
+        });
+
+        this.fixture.push({
+          competencia: competencia.nombre,
+          fechaPartido: '', // No necesitamos esto ya que se llena en cada enfrentamiento
+          enfrentamientos: enfrentamientos
+        });
+      } else {
+        console.log('No hay partidos para la competencia');
+      }
+    });
   }
 
   logout() {
     this.authService.logout();
-  }
-
-  navigateToStandings() {
-    console.log('Navegar a la tabla de posiciones');
-  }
-
-  obtenerPartidosYCompetencias(): void {
-    forkJoin([
-      this.fixtureService.obtenerPartidos(),
-      this.fixtureService.obtenerCompetencias()
-    ]).subscribe(([partidos, competencias]) => {
-      this.partidos = partidos;
-      this.competencias = competencias;
-      console.log(this.competencias); 
-    });
-  }
-
-  obtenerNombreCompetencia(idCompetencia: number): string {
-    console.log("ID de la competencia:", idCompetencia); 
-    const competencia = this.competencias.find(comp => comp.id === idCompetencia);
-    return competencia ? competencia.nombre : 'Competencia Desconocida';
-  }
-
-  generarFixture(): void {
-    this.fixture = this.groupBy(this.partidos, 'id_competencia');
-  }
-
-  groupBy(arr: any[], key: string): any {
-    return arr.reduce((acc, obj) => {
-      const group = obj[key];
-      acc[group] = acc[group] || [];
-      acc[group].push(obj);
-      return acc;
-    }, {});
   }
 }

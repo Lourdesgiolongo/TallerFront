@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { CompetenciasService } from './competencias.service';
 
-describe('CompetenciasService', () => {
+describe('CompetenciaServiceService', () => {
   let service: CompetenciasService;
 
   beforeEach(() => {
@@ -14,3 +14,4 @@ describe('CompetenciasService', () => {
     expect(service).toBeTruthy();
   });
 });
+

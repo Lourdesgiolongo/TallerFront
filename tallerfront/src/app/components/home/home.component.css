@@ -27,21 +27,19 @@ body{
 
 .nav-menu button {
     color:#fff;
-    /* background-color: #fbfb56; */
     border: none;
     font-size: 16px; 
     margin-right: 10px; 
-    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
     transition: #ff9c1b 0.3s ease; 
 }
 
 .nav-menu button:hover {
     color: white;
-    background-color: #ff9c1b; /* Color de fondo cuando se pasa el ratón por encima */
+    background-color: #ff9c1b; 
 }
 
 .nav-menu button:active {
-    background-color: red; /* Color de fondo cuando se presiona el botón */
+    background-color: red;
 }
 
 h1{
@@ -50,7 +48,6 @@ h1{
     letter-spacing: 2px;
     line-height: 1.3;
     font-weight: bold;
-    
     text-align: center;
     justify-content: center;
     position: relative;

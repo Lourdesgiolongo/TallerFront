@@ -1,72 +1,80 @@
 .nav-menu{
-    background-color: #fff;
-    display: flex;
-    justify-content: space-evenly;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-    height: 60px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
+  background-color: #000;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
+
 .nav-menu button {
-    color:#000;
-    /* background-color: #fbfb56; */
-    border: none;
-    font-size: 16px; 
-    margin-right: 10px; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: #ff9c1b 0.3s ease; 
+  color:#fff;
+  border: none;
+  font-size: 16px; 
+  margin-right: 10px; 
+  transition: #ff9c1b 0.3s ease; 
 }
 
 .nav-menu button:hover {
-    color: white;
-    background-color: #ff9c1b; /* Color de fondo cuando se pasa el ratón por encima */
+  color: white;
+  background-color: #ff9c1b; 
 }
 
 .nav-menu button:active {
-    background-color: red; /* Color de fondo cuando se presiona el botón */
+  background-color: red;
 }
 
-h2{
-    margin-top: 400px;
-    font-size: 50px;
-}
-
-/* Estilos para el contenedor principal del fixture */
-.fixture-container {
-    margin-top: 20px; /* Margen superior para separar del menú */
-    padding: 20px;
-    border: 2px solid #ccc;
+  .fixture-container {
+    margin-top: 20px;
+  }
+  
+  .competencia {
+    border: 1px solid #ccc;
     border-radius: 5px;
-}
-
-/* Estilos para cada partido individual */
-.partido {
-    margin-bottom: 10px; /* Separación entre partidos */
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-.partido h3 {
-    font-size: 18px;
-    margin-bottom: 5px;
-}
-
-.partido p {
-    font-size: 14px;
-    margin: 0;
-    color: #333;
-}
-
-/* Estilos para el encabezado del fixture */
-.fixture-header {
-    font-size: 24px;
     margin-bottom: 20px;
-}
+  }
+  
+  .competencia-title {
+    text-align: center; /* Centrar el texto horizontalmente */
+  }
+  .competencia h3 {
+    margin-top: 0;
+  }
+  
+  .bracket {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .match {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .match .team {
+    font-weight: bold;
+    width: 100px; /* Ajusta según sea necesario */
+  }
+  
+  .match .versus {
+    margin: 0 10px;
+  }
+  
+  .datetime {
+    margin-left: auto;
+    font-size: 12px;
+  }
+  
+  .spacer {
+    height: 60px; /* Altura del menú */
+  }
