@@ -216,21 +216,21 @@ export class PartidosComponent implements OnInit {
       const fechaActual = new Date();
       const fechaRealizacionValida = new Date(fechaRealizacion) > fechaActual;
 
-      if (!localValido || !visitanteValido || !competenciaEncontrada || !fechaRealizacionValida) {
-        if (!localValido) {
-          console.error('No se encontraron detalles completos del equipo local.');
-        }
-        if (!visitanteValido) {
-          console.error('No se encontraron detalles completos del equipo visitante.');
-        }
-        if (!competenciaEncontrada) {
-          console.error('No se encontró la competencia seleccionada.');
-        }
-        if (!fechaRealizacionValida) {
-          console.error('La fecha de realización del partido debe ser posterior a la fecha actual.');
-        }
-        return;
-      }
+      // if (!localValido || !visitanteValido || !competenciaEncontrada || !fechaRealizacionValida) {
+      //   if (!localValido) {
+      //     console.error('No se encontraron detalles completos del equipo local.');
+      //   }
+      //   if (!visitanteValido) {
+      //     console.error('No se encontraron detalles completos del equipo visitante.');
+      //   }
+      //   if (!competenciaEncontrada) {
+      //     console.error('No se encontró la competencia seleccionada.');
+      //   }
+      //   if (!fechaRealizacionValida) {
+      //     console.error('La fecha de realización del partido debe ser posterior a la fecha actual.');
+      //   }
+      //   return;
+      // }
 
       const partidoData = {
         id: this.partidoSeleccionado.id,
@@ -239,7 +239,7 @@ export class PartidosComponent implements OnInit {
         fecha_realizacion: this.partidoForm.value.fecha_realizacion,
         competencia: { id: this.partidoForm.value.competencia },
         local: { id: this.partidoForm.value.local },
-        visitante: { id: this.partidoForm.value.visitante } 
+        visitante: { id: this.partidoForm.value.visitante }
       };
 
       this.partidosService.actualizarPartido(partidoData).subscribe(
