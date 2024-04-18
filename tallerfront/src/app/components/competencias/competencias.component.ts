@@ -5,7 +5,6 @@ import { Competencia } from '../competencias/competencias.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router'; 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
   @Component({
     selector: 'app-competencias',
     templateUrl: './competencias.component.html',
@@ -27,8 +26,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
     ngOnInit(): void {
       this.obtenerCompetencias(); 
     }
-
-    
 
 
     obtenerCompetencias(): void {

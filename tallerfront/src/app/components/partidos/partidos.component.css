@@ -1,3 +1,6 @@
+body{
+  background-color: #423E3B;
+}
 @import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 .nav-menu{
   background-color: #000;
@@ -33,11 +36,13 @@
 }
 
 h2{
-    margin-top: 100px;
+  color: #FFFECB;
+  margin-top: 60px;
+  text-align: center;
 }
 
 .container {
-    margin-bottom: 20px;
+  background-color: #423E3B;
   }
   
   .partidos-grid {
@@ -47,7 +52,10 @@ h2{
   }
   
   .partido {
-    border: 1px solid #ccc;
+    color: #FFFECB;
+    background-color: #FF2E00;
+    border: 1px solid #FF2E00;
+    border-radius: 5px;
     padding: 10px;
   }
   
@@ -63,17 +71,19 @@ h2{
     margin-bottom: 10px;
   }
   
-  button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
+.container button {
+  padding: 10px 20px;
+  background-color: #5448C8;
+  color: #FFFECB;
+  border: none;
+  cursor: pointer;
+}
+
+.container button:hover {
+  background-color: #0056b3;
+}
+
+
   
   .crear-partido {
     display: flex;

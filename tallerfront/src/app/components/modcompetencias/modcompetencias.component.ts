@@ -95,5 +95,9 @@ export class ModCompetenciasComponent implements OnInit {
     const isoString = date.toISOString();
     return isoString;
   }
+
+  cancelar(): void {
+    this.router.navigate(['/competencias']);
+  }
  
 }

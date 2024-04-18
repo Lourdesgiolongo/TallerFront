@@ -1,5 +1,5 @@
 .nav-menu{
-    background-color: #fff;
+    background-color: #000;
     display: flex;
     justify-content: space-evenly;
     margin: 0;
@@ -13,21 +13,58 @@
     z-index: 1000;
 }
 
+
 .nav-menu button {
-    color:#000;
-    /* background-color: #fbfb56; */
+    color:#fff;
     border: none;
     font-size: 16px; 
     margin-right: 10px; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: #ff9c1b 0.3s ease; 
 }
 
 .nav-menu button:hover {
     color: white;
-    background-color: #ff9c1b; /* Color de fondo cuando se pasa el ratón por encima */
+    background-color: #ff9c1b; 
 }
 
 .nav-menu button:active {
-    background-color: red; /* Color de fondo cuando se presiona el botón */
+    background-color: red;
 }
+
+/* Estilos para el botón de crear clasificación */
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilos para la lista de clasificaciones */
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos para los botones de actualizar y eliminar */
+  button.update, button.delete {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  button.update:hover, button.delete:hover {
+    background-color: #c82333;
+  }
+  

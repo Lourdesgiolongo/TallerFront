@@ -1,13 +1,13 @@
 <body>
     <div class="menu">
         <nav class="nav-menu">
-            <button mat-button routerLink="/home">Inicio</button>
-            <button mat-button routerLink="/competencias">Competencias</button>
-            <button mat-button routerLink="/fixture">Fixture</button>
-            <button mat-button routerLink="/clasificacion">Tabla de Posiciones</button>
-            <button mat-button routerLink="/equipos">Equipos</button>
-            <button mat-button routerLink="/partidos">Partidos</button>
-            <button mat-button (click)="logout()">Cerrar Sesión</button>
+            <button class="menu-button" mat-button routerLink="/home">Inicio</button>
+            <button class="menu-button" mat-button routerLink="/competencias">Competencias</button>
+            <button class="menu-button" mat-button routerLink="/fixture">Fixture</button>
+            <button class="menu-button" mat-button routerLink="/clasificacion">Tabla de Posiciones</button>
+            <button class="menu-button" mat-button routerLink="/equipos">Equipos</button>
+            <button class="menu-button" mat-button routerLink="/partidos">Partidos</button>
+            <button class="menu-button" mat-button (click)="logout()">Cerrar Sesión</button>
         </nav>
     </div>
     <div class="content">
@@ -20,27 +20,29 @@
                     <p>Fecha de inicio: {{ competencia.fecha_inicio }}</p>
                     <p>Fecha de creación: {{ competencia.fecha_creacion }}</p>
                 </div>
-                    <div class="competencia-buttons">
-                        <button (click)="eliminarCompetencia(competencia.id)">Eliminar</button>
-                        <button (click)="editarCompetencia(competencia)">Modificar</button>
-                    </div>
+                <div class="competencia-buttons">
+                    <button class="competencia-button" (click)="eliminarCompetencia(competencia.id)">Eliminar</button>
+                    <button class="competencia-button" (click)="editarCompetencia(competencia)">Modificar</button>
                 </div>
             </div>
+        </div>
         <button class="create-button" mat-button routerLink="/mod-competencias">Crear Competencias</button>
     </div>
+    <div class="container">
     <div *ngIf="mostrarFormularioEditar">
         <h2>Editar Competencia</h2>
         <form [formGroup]="formularioEditar" (ngSubmit)="guardarCambios()">
-          <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input type="text" class="form-control" id="nombre" formControlName="nombre">
-          </div>
-          <div class="form-group">
-            <label for="fechaInicio">Fecha de Inicio:</label>
-            <input type="datetime-local" class="form-control" id="fechaInicio" formControlName="fechaInicio">
-          </div>
-          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-          <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" formControlName="nombre">
+            </div>
+            <div class="form-group">
+                <label for="fechaInicio">Fecha de Inicio:</label>
+                <input type="datetime-local" class="form-control" id="fechaInicio" formControlName="fechaInicio">
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
         </form>
-      </div>
+    </div>
+    </div>
 </body>

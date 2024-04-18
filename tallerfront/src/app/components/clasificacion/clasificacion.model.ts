@@ -1,9 +1,24 @@
 import { Participante } from "../participantes/participantes.model";
+import { Competencia } from "../competencias/competencias.model";
+import { CompetenciaDTO } from "../dtos/competenciasDTO";
+
+export interface ClasificacionDTO {
+  id: number;
+  competidor: Participante; 
+  competencia: CompetenciaDTO; 
+  numeroGanados: number;
+  numeroEmpatados: number;
+  numeroPerdidos: number;
+  fechaBaja: null;
+}
 
 export interface Clasificacion {
-    participante: Participante;
-    puntos: number;
-    golesAFavor: number;
-    golesEnContra: number;
-    diferenciaGoles: number;
-  }
+  id: number;
+  competidor: Participante; 
+  competencia: CompetenciaDTO; 
+  numeroGanados: number;
+  numeroEmpatados: number;
+  numeroPerdidos: number;
+  fechaBaja: null;
+}
+

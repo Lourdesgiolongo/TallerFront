@@ -1,3 +1,6 @@
+body,html{
+    background-color: #423E3B;
+}
 .nav-menu{
     background-color: #000;
     display: flex;
@@ -12,7 +15,6 @@
     left: 0;
     z-index: 1000;
 }
-
 
 .nav-menu button {
     color:#fff;
@@ -31,6 +33,34 @@
     background-color: red;
 }
 
-h2{
-    margin-top: 100px;
+.content{
+    background-color: #423E3B;
 }
+
+h2{
+    color: #FFFECB;
+    margin-top: 65px;
+    text-align: center;
+}
+
+.participantes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+.participante {
+    color: #FFFECB;
+    width: calc(25% - 10px);
+    background-color: #FF2E00;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.participante-info {
+    color: #FFFECB;
+}
+
+

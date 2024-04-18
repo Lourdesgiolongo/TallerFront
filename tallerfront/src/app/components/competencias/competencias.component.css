@@ -1,3 +1,6 @@
+body{
+    background-color: #423E3B;
+}
 .nav-menu{
     background-color: #000;
     display: flex;
@@ -40,10 +43,12 @@
     background-attachment: fixed; */
     padding-top: 80px;
     min-height: 100vh;
+    background-color: #423E3B;
+
 }
 
 h2 {
-    color: #000;
+    color: #FFFECB;
     font-size: 40px;
     text-align: center;
     line-height: 1;
@@ -57,35 +62,65 @@ h2 {
 }
 
 .competencia {
-    width: calc(30% - 20px);
-    background-color: #52b69a;
-    padding: 10px;
-    margin: 10px;
+    color: #FFFECB;
+    width: calc(25% - 10px);
+    background-color: #FF2E00;
+    padding: 20px;
+    margin-bottom: 10px;
     border-radius: 5px;
 }
 
-.competencia-info {
-    color: #eaff9d;
-    margin-bottom: 10px;
+
+.competencia-button {
+    color: #FFFECB;
+    background-color: #5448C8;
+    border: none;
+    font-size: 14px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    padding: 6px 12px;
+}
+
+.competencia-button:hover {
+    background-color: #3a9472;
+}
+
+.competencia-button:active {
+    background-color: #1e6e4a;
 }
 
 .create-button {
     display: block;
-    margin: 0 auto;
-    background-color: #ff9c1b;
+    margin: 20px auto;
+    background-color: #5448C8;
     border-radius: 20px;
-    padding: 10px;
+    padding: 10px 20px;
     transition: background-color 0.3s;
 }
 
-.create-button:active {
-    background-color: #52b69a;
-    transform: translateY(2px);
+.create-button:hover {
+    background-color: #3a9472;
 }
 
-/* Responsiveness */
-@media (max-width: 768px) {
+.create-button:active {
+    background-color: #1e6e4a;
+}
+
+.container{ 
+    background-color: #423E3B;
+}
+
+/* Estilos para pantallas grandes */
+@media (min-width: 768px) {
     .competencia {
-        width: calc(45% - 20px);
+        width: calc(25% - 20px); /* Para tener 4 competencias por fila */
+    }
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 767px) {
+    .competencia {
+        width: calc(50% - 20px); /* Para tener 2 competencias por fila */
     }
 }
