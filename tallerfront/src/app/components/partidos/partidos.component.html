@@ -44,19 +44,19 @@
               <label for="competencia_edit">Competencia</label>
               <select id="competencia_edit" formControlName="competencia" required>
                 <option value="">Seleccionar Competencia</option>
-                <option *ngFor="let competencia of competencias" [value]="competencia.id">{{ competencia.id }}</option>
+                <option *ngFor="let competencia of competencias" [value]="competencia.id">{{ competencia.nombre }}</option>
               </select>
           
               <label for="local_edit">Local</label>
               <select id="local_edit" formControlName="local" required>
                 <option value="">Seleccionar Local</option>
-                <option *ngFor="let participante of participantes" [value]="participante.id">{{ participante.id }}</option>
+                <option *ngFor="let participante of participantes" [value]="participante.id">{{ participante.nombre }}</option>
               </select>
           
               <label for="visitante_edit">Visitante</label>
               <select id="visitante_edit" formControlName="visitante" required>
                 <option value="">Seleccionar Visitante</option>
-                <option *ngFor="let participante of participantes" [value]="participante.id">{{ participante.id }}</option>
+                <option *ngFor="let participante of participantes" [value]="participante.id">{{ participante.nombre }}</option>
               </select>
           
               

@@ -206,37 +206,16 @@ export class PartidosComponent implements OnInit {
       const visitante = this.partidoForm.value.visitante;
       const competenciaId = this.partidoForm.value.competencia;
       const fechaRealizacion = this.partidoForm.value.fecha_realizacion;
-      if (typeof local !== 'number' || typeof visitante !== 'number' || typeof competenciaId !== 'number') {
-        console.error('Error: Los IDs de equipo y competencia deben ser números.');
-        return;
-      }
-      
-  
-      // Mostrar los datos seleccionados en el formulario
-      console.log('Equipo local seleccionado:', local);
-      console.log('Equipo visitante seleccionado:', visitante);
-      console.log('Competencia seleccionada:', competenciaId);
-      console.log('Fecha de realización seleccionada:', fechaRealizacion);
-  
+
       // Verificar si los equipos y la competencia son válidos
       const localValido = this.participantes.some(participante => participante.id === local);
       const visitanteValido = this.participantes.some(participante => participante.id === visitante);
       const competenciaEncontrada = this.competencias.some(competencia => competencia.id === competenciaId);
-  
+
       // Verificar si la fecha de realización del partido es válida
       const fechaActual = new Date();
       const fechaRealizacionValida = new Date(fechaRealizacion) > fechaActual;
 
-      const equipoLocal = this.participantes.find(p => p.id === local);
-    if (!equipoLocal) {
-      console.error("No se encontraron detalles completos del equipo local.");
-      return;
-    }
-    if (!equipoLocal.nombre || !equipoLocal.colores || !equipoLocal.trofeos) {
-      console.error("No se encontraron detalles completos del equipo local.");
-      return;
-    }
-  
       if (!localValido || !visitanteValido || !competenciaEncontrada || !fechaRealizacionValida) {
         if (!localValido) {
           console.error('No se encontraron detalles completos del equipo local.');
@@ -252,18 +231,17 @@ export class PartidosComponent implements OnInit {
         }
         return;
       }
-  
+
       const partidoData = {
         id: this.partidoSeleccionado.id,
         goles_local: this.partidoForm.value.goles_local,
         goles_visitante: this.partidoForm.value.goles_visitante,
         fecha_realizacion: this.partidoForm.value.fecha_realizacion,
-        local: this.partidoForm.value.local, // Asignar solo el ID del equipo local
-        visitante: this.partidoForm.value.visitante, // Asignar solo el ID del equipo visitante
-        competencia: this.partidoForm.value.competencia // Asignar solo el ID de la competencia
-};
+        competencia: { id: this.partidoForm.value.competencia },
+        local: { id: this.partidoForm.value.local },
+        visitante: { id: this.partidoForm.value.visitante } 
+      };
 
-  
       this.partidosService.actualizarPartido(partidoData).subscribe(
         (respuesta) => {
           console.log('Partido modificado exitosamente:', respuesta);
@@ -279,7 +257,6 @@ export class PartidosComponent implements OnInit {
       console.error('Formulario inválido');
     }
   }
-  
 
   cancelarEdicion() {
     this.mostrarFormularioEdicion = false;
